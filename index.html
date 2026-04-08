@@ -46,63 +46,63 @@
 </head>
 <body>
   <section class="hero">
-    <h1>🌱 ЭкоФерм</h1>
-    <p class="subtitle">СВОИ ЦЕНЫ KZT • Кызылорда 📱💻</p>
+    <h1>🌱 ECO-LOGIC</h1>
+    <p class="subtitle">Өз бағаңыз KZT • Кызылорда 📱💻</p>
   </section>
 
   <div class="container">
     <div class="card">
       <div class="input-group">
-        <label>📏 Площадь (га)</label>
+        <label>📏 Аудан (га)</label>
         <input id="area" type="number" value="1" min="0.1" max="1000" inputmode="decimal" step="0.1">
       </div>
       
       <div class="input-group">
-        <label>🌾 Культура</label>
+        <label>🌾 Дақылдар</label>
         <select id="crop">
-          <option value="рис">Рис (200кг/га)</option>
-          <option value="пшеница">Пшеница (130кг/га)</option>
-          <option value="томаты">Томаты (0.3кг/га)</option>
-          <option value="кукуруза">Кукуруза (25кг/га)</option>
+          <option value="рис">Күріш (200кг/га)</option>
+          <option value="пшеница">Бидай (130кг/га)</option>
+          <option value="томаты">Қызанақ (0.3кг/га)</option>
+          <option value="кукуруза">Жүгері (25кг/га)</option>
         </select>
       </div>
       
       <div class="input-group">
-        <label>🌱 Почва</label>
+        <label>🌱 Жердің құнарлығы</label>
         <select id="soil">
-          <option value="низкое">Низкое (+20%)</option>
-          <option value="среднее" selected>Среднее</option>
-          <option value="высокое">Высокое (-20%)</option>
+          <option value="низкое">Төмен (+20%)</option>
+          <option value="среднее" selected>Орташа</option>
+          <option value="высокое">Жоғары (-20%)</option>
         </select>
       </div>
       
       <div class="input-group">
-        <label>🌧️ Дождь (мм/мес)</label>
+        <label>🌧️ Жауын-шашын (мм/мес)</label>
         <input id="rain" type="number" value="50" min="0" max="1000" inputmode="numeric">
       </div>
 
       <div class="input-group">
-        <label>💰 Ваши цены (₸/кг или ₸/л)</label>
+        <label>💰 Өз бағаңыз (₸/кг или ₸/л)</label>
         <div class="price-group">
           <div>
-            <label>🌾 Семена</label>
+            <label>🌾 Тұқым</label>
             <input id="priceSeeds" type="number" value="160" inputmode="numeric" step="1">
           </div>
           <div>
-            <label>🧪 Удобрения</label>
+            <label>🧪 Тыңайтқыш</label>
             <input id="priceFert" type="number" value="200" inputmode="numeric" step="1">
           </div>
         </div>
         <div class="price-group">
           <div>
-            <label>💧 Вода (₸/л)</label>
+            <label>💧 Су (₸/л)</label>
             <input id="priceWater" type="number" value="0.15" step="0.01" inputmode="decimal">
           </div>
         </div>
       </div>
 
-      <button class="btn btn-secondary" onclick="loadWeather(event)">☁️ Погода Кызылорды</button>
-      <button class="btn btn-primary" onclick="calculate(event)">🚀 Рассчитать ₸</button>
+      <button class="btn btn-secondary" onclick="loadWeather(event)">☁️ Қызылорда ауа-райы</button>
+      <button class="btn btn-primary" onclick="calculate(event)">🚀 Есептеу ₸</button>
     </div>
 
     <div id="result">
