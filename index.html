@@ -210,7 +210,7 @@
           <div class="metric"><div class="metric-value">${totalCost.toLocaleString()}</div><label>💰 НӘТИЖЕ<br><small>${Math.round(totalCost/area).toLocaleString()} ₸/га</small></label></div>
         `;
 
-        document.getElementById('res-text').innerHTML = `💧 Үнемделген су: <strong>${savedWaterL.toLocaleString()} л</strong><br><strong>Ваши цены: семена ${priceSeeds}₸ | удобрения ${priceFert}₸ | вода ${priceWater}₸/л</strong>`;
+        document.getElementById('res-text').innerHTML = `💧 Үнемделген су: <strong>${savedWaterL.toLocaleString()} л</strong><br><strong>Өз бағаңыз: тұқым ${priceSeeds}₸ | тыңайтқыщ ${priceFert}₸ | су ${priceWater}₸/л</strong>`;
 
         document.getElementById('result').style.display = 'block';
         document.getElementById('csvBtn').disabled = false;
@@ -246,7 +246,7 @@
     function exportCSV() {
       if (!lastCalcData) return;
       const d = lastCalcData;
-      const csv = `Площадь(га),Культура,Семена(кг/${d.priceSeeds}₸),Удобрения(кг/${d.priceFert}₸),Вода(л/${d.priceWater}₸),Итого(₸)\n${d.area},${d.crop},${d.seedsKg},${d.fertKg},${d.waterL},${d.totalCost}`;
+      const csv = `Аудан(га),Жердің құнарлығы,Тұқым(кг/${d.priceSeeds}₸),Тыңайтқыщ(кг/${d.priceFert}₸),Су(л/${d.priceWater}₸),Нәтиже(₸)\n${d.area},${d.crop},${d.seedsKg},${d.fertKg},${d.waterL},${d.totalCost}`;
       downloadFile(csv, `ecofarm_${d.crop}_${d.area}га_${d.totalCost}₸.csv`, 'text/csv');
       debug('📥 CSV готов!', true);
     }
@@ -308,7 +308,7 @@
     });
 
     window.onload = () => {
-      debug('🚀 📱💻 Готово! Введите цены → Рассчитать!', true);
+      debug('🚀 📱💻 Дайын! Өз бағаңызды жазыңыз → Есептеу!', true);
       calculate({preventDefault: () => {}}); // Demo
     };
   </script>
