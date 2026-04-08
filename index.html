@@ -154,7 +154,7 @@
         const data = await res.json();
         let rain = data.rain?.['1h'] ? Math.round(data.rain['1h'] * 720) : 50;
         document.getElementById('rain').value = rain;
-        debug(`✅ Погода: ${rain} мм/мес`, true);
+        debug(`✅ Ауа-райы: ${rain} мм/мес`, true);
         calculate({preventDefault: () => {}});
       } catch(e) {
         document.getElementById('rain').value = 150;
@@ -176,13 +176,13 @@
         const priceFert = safeParseFloat(document.getElementById('priceFert').value, 200);
         const priceWater = safeParseFloat(document.getElementById('priceWater').value, 0.15);
 
-        if (area < 0.1 || area > 1000) throw new Error('Площадь 0.1-1000 га');
+        if (area < 0.1 || area > 1000) throw new Error('Аудан 0.1-1000 га');
 
         const crops = {
-          рис: {seeds:200, fert:150, water:8000, name:'Рис'},
-          пшеница: {seeds:130, fert:120, water:4000, name:'Пшеница'},
-          томаты: {seeds:0.3, fert:200, water:5000, name:'Томаты'},
-          кукуруза: {seeds:25, fert:180, water:6000, name:'Кукуруза'}
+          Күріш: {seeds:200, fert:150, water:8000, name:'Күріш'},
+          Бидай: {seeds:130, fert:120, water:4000, name:'Бидай'},
+          Қызанақ: {seeds:0.3, fert:200, water:5000, name:'Қызанақ'},
+          Жүгері: {seeds:25, fert:180, water:6000, name:'Жүгері'}
         };
 
         const item = crops[crop];
@@ -204,13 +204,13 @@
         document.getElementById('res-title').textContent = `${area} га ${item.name}: ${totalCost.toLocaleString()} ₸`;
         
         document.getElementById('metrics').innerHTML = `
-          <div class="metric"><div class="metric-value">${seedsKg.toLocaleString()}</div><label>🌾 Семена (${priceSeeds}₸/кг)<br><small>${seedsCost.toLocaleString()} ₸</small></label></div>
-          <div class="metric"><div class="metric-value">${fertKg.toLocaleString()}</div><label>🧪 Удобрения (${priceFert}₸/кг)<br><small>${fertCost.toLocaleString()} ₸</small></label></div>
-          <div class="metric"><div class="metric-value">${Math.round(waterL/1000).toLocaleString()}</div><label>💧 Вода (${priceWater}₸/л)<br><small>${waterCost.toLocaleString()} ₸</small></label></div>
-          <div class="metric"><div class="metric-value">${totalCost.toLocaleString()}</div><label>💰 ИТОГО<br><small>${Math.round(totalCost/area).toLocaleString()} ₸/га</small></label></div>
+          <div class="metric"><div class="metric-value">${seedsKg.toLocaleString()}</div><label>🌾 Тұқым (${priceSeeds}₸/кг)<br><small>${seedsCost.toLocaleString()} ₸</small></label></div>
+          <div class="metric"><div class="metric-value">${fertKg.toLocaleString()}</div><label>🧪 Тыңайтқыш (${priceFert}₸/кг)<br><small>${fertCost.toLocaleString()} ₸</small></label></div>
+          <div class="metric"><div class="metric-value">${Math.round(waterL/1000).toLocaleString()}</div><label>💧 Су (${priceWater}₸/л)<br><small>${waterCost.toLocaleString()} ₸</small></label></div>
+          <div class="metric"><div class="metric-value">${totalCost.toLocaleString()}</div><label>💰 НӘТИЖЕ<br><small>${Math.round(totalCost/area).toLocaleString()} ₸/га</small></label></div>
         `;
 
-        document.getElementById('res-text').innerHTML = `💧 Экономия воды: <strong>${savedWaterL.toLocaleString()} л</strong><br><strong>Ваши цены: семена ${priceSeeds}₸ | удобрения ${priceFert}₸ | вода ${priceWater}₸/л</strong>`;
+        document.getElementById('res-text').innerHTML = `💧 Үнемделген су: <strong>${savedWaterL.toLocaleString()} л</strong><br><strong>Ваши цены: семена ${priceSeeds}₸ | удобрения ${priceFert}₸ | вода ${priceWater}₸/л</strong>`;
 
         document.getElementById('result').style.display = 'block';
         document.getElementById('csvBtn').disabled = false;
@@ -218,7 +218,7 @@
         document.getElementById('actionBar').classList.add('show');
         
         updateChart(seedsKg, fertKg, waterL/1000, totalCost/100000);
-        debug(`✅ ${totalCost.toLocaleString()} ₸ (ваши цены)`, true);
+        debug(`✅ ${totalCost.toLocaleString()} ₸ (Өз бағаңыз)`, true);
 
       } catch(e) {
         debug('❌ ' + e.message);
@@ -232,13 +232,13 @@
       chartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ['Семена', 'Удобрения', 'Вода', 'Итого (тыс.₸)'],
+          labels: ['Тұқым', 'Тыңайтқыш', 'Су', 'Нәтиже (тыс.₸)'],
           datasets: [{data: [seeds/100, fert/100, water/10, total], backgroundColor: ['#FF5722', '#FF9800', '#2196F3', '#4CAF50'], borderWidth: 3, borderColor: '#fff'}]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: {title: {display: true, text: '📊 Ваши затраты KZT'}}
+          plugins: {title: {display: true, text: '📊 Сіздің шығын KZT'}}
         }
       });
     }
@@ -257,13 +257,13 @@
       const d = lastCalcData;
       
       doc.setFontSize(20);
-      doc.text('🌱 ЭКОФЕРМ • ВАШИ ЦЕНЫ', 105, 25, {align: 'center'});
+      doc.text('🌱 ECOLOGIC • ӨЗ БАҒАҢЫЗ', 105, 25, {align: 'center'});
       doc.setFontSize(14);
       doc.text(`${d.crop} | ${d.area} га`, 20, 50);
-      doc.text(`ИТОГО: ${d.totalCost.toLocaleString()} ₸`, 20, 65);
-      doc.text(`Семена: ${d.seedsKg}кг × ${d.priceSeeds}₸ = ${d.seedsCost}₸`, 20, 80);
-      doc.text(`Удобрения: ${d.fertKg}кг × ${d.priceFert}₸ = ${d.fertCost}₸`, 20, 95);
-      doc.text(`Вода: ${Math.round(d.waterL/1000)}м³ × ${d.priceWater}₸/л = ${d.waterCost}₸`, 20, 110);
+      doc.text(`НӘТИЖЕ: ${d.totalCost.toLocaleString()} ₸`, 20, 65);
+      doc.text(`Тұқым: ${d.seedsKg}кг × ${d.priceSeeds}₸ = ${d.seedsCost}₸`, 20, 80);
+      doc.text(`Тыңайтқыш: ${d.fertKg}кг × ${d.priceFert}₸ = ${d.fertCost}₸`, 20, 95);
+      doc.text(`Су: ${Math.round(d.waterL/1000)}м³ × ${d.priceWater}₸/л = ${d.waterCost}₸`, 20, 110);
       
       // ✅ MOBILE PDF FIX
       const blob = doc.output('blob');
